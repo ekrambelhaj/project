@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/sidebar.css ">
+    <title>Document</title>
+</head>
+
+<body dir="rtl">
+    @include('bootstrap')
+
+
+    <nav class="navbar navbar-expand-lg top">
+
+
+
+        <div class="close">
+            <div class="close-btn ">
+                <i class="fas fa-bars"><img class="img-close" src="{{ asset('img/layout (1).png') }}"
+                        width="40"></i>
+            </div>
+        </div>
+        </div>
+
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto " ><img src="{{ asset('img/b.png') }}"width="50"
+                    height="50" alt=""></a>
+
+        </div>
+        <!-- Authentication -->
+        <div class="">
+
+
+
+    </div>
+    </nav>
+
+
+    <div class="side-bar">
+        <div class="menu-btn">
+            <i class="fas fa-times"><img src="{{ asset('img/close-menu.png') }}" width="40"></i>
+        </div>
+
+        <div class="menu">
+           <div class="col-12 px-0 pb-4 text-center justify-content-center align-items-center ">
+                <a href="/admin">
+
+                    <img src='{{ asset('img/user.png') }}' width="30"
+                        style="width: 80px;height: 80px;color: var(--background-1);border-radius: 50%"
+                        class="d-inline-block">
+                </a>
+                <div class="col-12 px-0 mt-2 text-center" style="color: #232323;">
+                {{-- {{ Auth::user()->name }} --}}
+                </div>
+            </div>
+
+
+
+            <div class="item">
+                <a class="" href="/dashboard">
+                    <img class="inline ml-3" src="{{ asset('img/dashboard.png') }}" width="25">الرئيسية
+                </a>
+            </div>
+
+            @role('admin')
+            <div class="item">
+                <a href="{{ route('user.index') }}">
+                <img class="inline ml-3" src="{{ asset('img/group.png') }}"
+                        width="25">المستخدمين</a></div>
+            @endrole
+
+            <div class="item">
+                <a href="/lab"><img    class="inline ml-3" src="{{ asset('img/blood-test.png') }}" width="25">
+
+                    العينات</a></div>
+
+
+            <div class="item">
+                <a href="analysis"><img class="inline ml-3" src="{{ asset('img/report.png') }}" width="25">
+
+                التحاليل</a></div>
+
+
+            <div class="item">
+                <a href="#"><img class="inline ml-3" src="{{ asset('img/printer.png') }}" width="25">
+                        طباعة</a></div>
+
+
+
+            <div class="item"><a href="#"><img  class="inline ml-3" src="{{ asset('img/settings.png') }}" width="25">
+
+
+            الإعدادات</a></div>
+
+
+            <div class="item" >
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <a class="" type="submit" :href="route('logout')"
+                        onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                                <img  class="inline ml-3" src="{{ asset('img/logout (1).png') }}" width="25">
+                       خروج
+                </a>
+                </form>
+            </div>
+
+    </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.sub-btn').click(function() {
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate')
+            });
+
+            $('.menu-btn').click(function() {
+                $('.side-bar').addClass('active');
+                $('.menu-btn').css("visibility", "hidden");
+            });
+
+            $('.close-btn').click(function() {
+                $('.side-bar').removeClass('active');
+                $('.menu-btn').css("visibility", "visible");
+            });
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>
